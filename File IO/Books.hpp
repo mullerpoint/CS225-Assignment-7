@@ -35,11 +35,12 @@ public:
 	const bool getInPrintDef();
 	std::string getSequel();
 	const std::string getISBN();
-	const int toCout();
+	//const int toCout();
 
 	//predicate
 	const int in_mem();
 	int clear();
+	std::ostream& output(std::ostream &out);
 };
 
 #endif 

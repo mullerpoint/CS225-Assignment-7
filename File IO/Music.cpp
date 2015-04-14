@@ -135,11 +135,11 @@ const Music::GENRE Music::getGENRE()
 	return musicGENRE_;
 }
 
-const int Music::toCout()
-{
-	std::cout << (*this);
-	return 0;
-}
+//const int Music::toCout()
+//{
+//	std::cout << (*this);
+//	return 0;
+//}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Predicate Functions
@@ -220,74 +220,71 @@ std::string Music::dispGENRESht(Music::GENRE type)
 	}
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Overloads
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-std::ostream& operator<<(std::ostream &out, Music &music)
+//override the base class output
+std::ostream& Music::output(std::ostream &out)
 {
 
 	//check if the item is empty
-	if (music.isEmpty() == true); //if empty print nothing
-	else if (music.isEmpty() == false) //if not empty print data thats available
+	if ((*this).isEmpty() == true); //if empty print nothing
+	else if ((*this).isEmpty() == false) //if not empty print data thats available
 	{
 		// display item name_ if present
-		if (music.getName() == DEF_NAME)
+		if ((*this).getName() == DEF_NAME)
 		{
 			out << std::left << std::setw(TEXT_WIDTH) << "Media Item Name" << " : " << "No Name Set" << std::endl;
 		}
-		else if (music.getName() != DEF_NAME)
+		else if ((*this).getName() != DEF_NAME)
 		{
-			out << std::left << std::setw(TEXT_WIDTH) << "Media Item" << " : " << music.getName() << std::endl;
+			out << std::left << std::setw(TEXT_WIDTH) << "Media Item" << " : " << (*this).getName() << std::endl;
 		}
 
 		// print out the author object
-		if (music.getAuthor() == NULL);
+		if ((*this).getAuthor() == NULL);
 		else
 		{
-			out << std::left << std::setw(TEXT_WIDTH) << (*(music.getAuthor()));
+			out << std::left << std::setw(TEXT_WIDTH) << (*((*this).getAuthor()));
 		}
 
 		//display publication year if set; check if the value is default
-		if (music.getPubYearDef() == true);
-		else if (music.getPubYearDef() == false)
+		if ((*this).getPubYearDef() == true);
+		else if ((*this).getPubYearDef() == false)
 		{
-			out << std::left << std::setw(TEXT_WIDTH) << "  Pub Year" << " : " << music.getPubYear() << std::endl;
+			out << std::left << std::setw(TEXT_WIDTH) << "  Pub Year" << " : " << (*this).getPubYear() << std::endl;
 		}
 
 		//display price if set
-		if (music.getPrice() == DEF_PRICE);
-		else if (music.getPrice() != DEF_PRICE)
+		if ((*this).getPrice() == DEF_PRICE);
+		else if ((*this).getPrice() != DEF_PRICE)
 		{
-			out << std::left << std::setw(TEXT_WIDTH) << "  Price" << " : $" << std::fixed << music.getPrice() << std::endl;
+			out << std::left << std::setw(TEXT_WIDTH) << "  Price" << " : $" << std::fixed << (*this).getPrice() << std::endl;
 		}
 
 		//display Producer_ if set
-		if (music.getProducer() == DEF_Producer_);
+		if ((*this).getProducer() == DEF_Producer_);
 		else
 		{
-			out << std::left << std::setw(TEXT_WIDTH) << "  Director" << " : " << music.getProducer() << std::endl;
+			out << std::left << std::setw(TEXT_WIDTH) << "  Director" << " : " << (*this).getProducer() << std::endl;
 		}
 
 		//display minutes_
-		if (music.getrunTime() == DEF_MIN);
+		if ((*this).getrunTime() == DEF_MIN);
 		else
 		{
-			out << std::left << std::setw(TEXT_WIDTH) << "  Minutes" << " : " << music.getrunTime() << std::endl;
+			out << std::left << std::setw(TEXT_WIDTH) << "  Minutes" << " : " << (*this).getrunTime() << std::endl;
 		}
 
 		//Display GENRE
 		//comparing strings to allow comparison, enums refused to compile
-		if (music.dispGENRESht(music.getGENRE()) == music.dispGENRESht(Music::GENRE::UDEF));
+		if ((*this).dispGENRESht((*this).getGENRE()) == (*this).dispGENRESht(Music::GENRE::UDEF));
 		else
 		{
-			out << std::left << std::setw(TEXT_WIDTH) << "  Genre" << " : " << music.dispGENRE(music.getGENRE()) << std::endl;
+			out << std::left << std::setw(TEXT_WIDTH) << "  Genre" << " : " << (*this).dispGENRE((*this).getGENRE()) << std::endl;
 		}
 
 		//open an arbitrary scope for displaying the elements in the item
 		{
 			//copy the list to allow full access and protect the real list from accedental/intentional modification
-			std::list<Elements>local_list = music.getElement();
+			std::list<Elements>local_list = (*this).getElement();
 
 			//display elements if they exist; 
 			if (local_list.empty() == true); // check if the list is empty

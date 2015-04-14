@@ -42,13 +42,14 @@ public:
 	const virtual double getrunTime();
 	const Music::GENRE getGENRE();
 	std::string getSequel();
-	const virtual int toCout();
+	//const virtual int toCout();
 
 	//predicate
 	const int in_mem();
 	int clear();
 	std::string dispGENRE(Music::GENRE = Music::GENRE::OTHER);
 	std::string dispGENRESht(Music::GENRE = Music::GENRE::OTHER);
+	std::ostream& output(std::ostream&);
 };
 
 #endif 

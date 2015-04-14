@@ -127,11 +127,11 @@ std::string Videos::getSequel()
 	return sequel_;
 }
 
-const int Videos::toCout()
-{
-	std::cout << (*this);
-	return 0;
-}
+//const int Videos::toCout()
+//{
+//	std::cout << (*this);
+//	return 0;
+//}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Predicate Functions
@@ -150,72 +150,69 @@ int Videos::clear()
 	return 0;
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Overloads
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::ostream& operator<<(std::ostream &out, Videos &Video)
+//over ride the base class fuction
+std::ostream& Videos::output(std::ostream &out)
 {
-
 	//check if the item is empty
-	if (Video.isEmpty() == true); //if empty print nothing
-	else if (Video.isEmpty() == false) //if not empty print data thats available
+	if ((*this).isEmpty() == true); //if empty print nothing
+	else if ((*this).isEmpty() == false) //if not empty print data thats available
 	{
 		// display item name_ if present
-		if (Video.getName() == DEF_NAME)
+		if ((*this).getName() == DEF_NAME)
 		{
 			out << std::left << std::setw(TEXT_WIDTH) << "Media Item Name" << " : " << "No Name Set" << std::endl;
 		}
-		else if (Video.getName() != DEF_NAME)
+		else if ((*this).getName() != DEF_NAME)
 		{
-			out << std::left << std::setw(TEXT_WIDTH) << "Media Item" << " : " << Video.getName() << std::endl;
+			out << std::left << std::setw(TEXT_WIDTH) << "Media Item" << " : " << (*this).getName() << std::endl;
 		}
 
 		// print out the author object
-		if (Video.getAuthor() == NULL);
+		if ((*this).getAuthor() == NULL);
 		else
 		{
-			out << std::left << std::setw(TEXT_WIDTH) << (*(Video.getAuthor()));
+			out << std::left << std::setw(TEXT_WIDTH) << (*((*this).getAuthor()));
 		}
 
 		//display publication year if set; check if the value is default
-		if (Video.getPubYearDef() == true);
-		else if (Video.getPubYearDef() == false)
+		if ((*this).getPubYearDef() == true);
+		else if ((*this).getPubYearDef() == false)
 		{
-			out << std::left << std::setw(TEXT_WIDTH) << "  Pub Year" << " : " << Video.getPubYear() << std::endl;
+			out << std::left << std::setw(TEXT_WIDTH) << "  Pub Year" << " : " << (*this).getPubYear() << std::endl;
 		}
 
 		//display price if set
-		if (Video.getPrice() == DEF_PRICE);
-		else if (Video.getPrice() != DEF_PRICE)
+		if ((*this).getPrice() == DEF_PRICE);
+		else if ((*this).getPrice() != DEF_PRICE)
 		{
-			out << std::left << std::setw(TEXT_WIDTH) << "  Price" << " : $" << std::fixed << Video.getPrice() << std::endl;
+			out << std::left << std::setw(TEXT_WIDTH) << "  Price" << " : $" << std::fixed << (*this).getPrice() << std::endl;
 		}
 
 		//display director_ if set
-		if (Video.getdirector() == DEF_DIRECTOR);
+		if ((*this).getdirector() == DEF_DIRECTOR);
 		else
 		{
-			out << std::left << std::setw(TEXT_WIDTH) << "  Director" << " : " << Video.getdirector() << std::endl;
+			out << std::left << std::setw(TEXT_WIDTH) << "  Director" << " : " << (*this).getdirector() << std::endl;
 		}
 
 		//display runTime_ if set
-		if (Video.getrunTime() == DEF_RUNTIME);
+		if ((*this).getrunTime() == DEF_RUNTIME);
 		else
 		{
-			out << std::left << std::setw(TEXT_WIDTH) << "  Run Time" << " : " << Video.getrunTime();
+			out << std::left << std::setw(TEXT_WIDTH) << "  Run Time" << " : " << (*this).getrunTime();
 		}
 
 		//display sequel if set
-		if (Video.getSequel() == DEF_SEQUEL);
+		if ((*this).getSequel() == DEF_SEQUEL);
 		else
 		{
-			out << std::left << std::setw(TEXT_WIDTH) << "  Sequel" << " : " << Video.getSequel();
+			out << std::left << std::setw(TEXT_WIDTH) << "  Sequel" << " : " << (*this).getSequel();
 		}
 
 		//open an arbitrary scope for displaying the elements in the item
 		{
 			//copy the list to allow full access and protect the real list from accedental/intentional modification
-			std::list<Elements>local_list = Video.getElement();
+			std::list<Elements>local_list = (*this).getElement();
 
 			//display elements if they exist; 
 			if (local_list.empty() == true); // check if the list is empty

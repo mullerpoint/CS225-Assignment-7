@@ -21,6 +21,7 @@
 #include <algorithm> //included to use sort()
 #include <stdexcept> // include to derive from runtime_error
 #include <cctype> //for isalpha()
+#include <fstream> //for fopen and 
 #endif
 
 //User Defined Class Includes
@@ -93,6 +94,7 @@ int main()
 	print_menu();
 
 	std::string itmstr;
+
 
 	while (!done && !std::cin.eof())
 	{

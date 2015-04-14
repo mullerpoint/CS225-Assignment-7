@@ -155,12 +155,12 @@ const std::string Books::getISBN()
 	return isbn;
 }
 
-//call overloaded print out function
-const int Books::toCout()
-{
-	std::cout << (*this);
-	return 0;
-}
+////call overloaded print out function
+//const int Books::toCout()
+//{
+//	std::cout << (*this);
+//	return 0;
+//}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Predicate Functions
@@ -181,60 +181,56 @@ int Books::clear()
 }
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Overloads
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-std::ostream& operator<<(std::ostream &out, Books &Book)
+std::ostream& Books::output(std::ostream &out)
 {
 
 	//check if the item is empty
-	if (Book.isEmpty() == true); //if empty print nothing
-	else if (Book.isEmpty() == false) //if not empty print data thats available
+	if ((*this).isEmpty() == true); //if empty print nothing
+	else if ((*this).isEmpty() == false) //if not empty print data thats available
 	{
 		// display item name_ if present
-		if (Book.getName() == DEF_NAME)
+		if ((*this).getName() == DEF_NAME)
 		{
 			out << std::left << std::setw(TEXT_WIDTH) << "Media Item Name" << " : " << "No Name Set" << std::endl;
 		}
-		else if (Book.getName() != DEF_NAME)
+		else if ((*this).getName() != DEF_NAME)
 		{
-			out << std::left << std::setw(TEXT_WIDTH) << "Media Item" << " : " << Book.getName() << std::endl;
+			out << std::left << std::setw(TEXT_WIDTH) << "Media Item" << " : " << (*this).getName() << std::endl;
 		}
 
 		// print out the author object
-		if (Book.getAuthor() == NULL);
+		if ((*this).getAuthor() == NULL);
 		else
 		{
-			out << std::left << std::setw(TEXT_WIDTH) << (*(Book.getAuthor()));
+			out << std::left << std::setw(TEXT_WIDTH) << (*((*this).getAuthor()));
 		}
 
 		//display publication year if set; check if the value is default
-		if (Book.getPubYearDef() == true);
-		else if (Book.getPubYearDef() == false)
+		if ((*this).getPubYearDef() == true);
+		else if ((*this).getPubYearDef() == false)
 		{
-			out << std::left << std::setw(TEXT_WIDTH) << "  Pub Year" << " : " << Book.getPubYear() << std::endl;
+			out << std::left << std::setw(TEXT_WIDTH) << "  Pub Year" << " : " << (*this).getPubYear() << std::endl;
 		}
 
 		//display price if set
-		if (Book.getPrice() == DEF_PRICE);
-		else if (Book.getPrice() != DEF_PRICE)
+		if ((*this).getPrice() == DEF_PRICE);
+		else if ((*this).getPrice() != DEF_PRICE)
 		{
-			out << std::left << std::setw(TEXT_WIDTH) << "  Price" << " : $" << std::fixed << Book.getPrice() << std::endl;
+			out << std::left << std::setw(TEXT_WIDTH) << "  Price" << " : $" << std::fixed << (*this).getPrice() << std::endl;
 		}
 
 		//display director_ if set
-		if (Book.getPages() == DEF_PAGES);
+		if ((*this).getPages() == DEF_PAGES);
 		else
 		{
-			out << std::left << std::setw(TEXT_WIDTH) << "  Page Count" << " : " << Book.getPages() << std::endl;
+			out << std::left << std::setw(TEXT_WIDTH) << "  Page Count" << " : " << (*this).getPages() << std::endl;
 		}
 
 		//display print status if set
-		if (Book.getInPrintDef() == true);
-		else if (Book.getInPrintDef() == false)
+		if ((*this).getInPrintDef() == true);
+		else if ((*this).getInPrintDef() == false)
 		{
-			if (Book.getInPrint() == true)
+			if ((*this).getInPrint() == true)
 			{
 				out << std::left << std::setw(TEXT_WIDTH) << "  Print Status" << " : " << "In Print" << std::endl;
 			}
@@ -245,23 +241,23 @@ std::ostream& operator<<(std::ostream &out, Books &Book)
 		}
 
 		//display isbn
-		if (Book.getISBN() == DEF_ISBN);
-		else if (Book.getISBN() != DEF_ISBN)
+		if ((*this).getISBN() == DEF_ISBN);
+		else if ((*this).getISBN() != DEF_ISBN)
 		{
-			out << std::left << std::setw(TEXT_WIDTH) << "  ISBN" << " : " << Book.getISBN() << std::endl;
+			out << std::left << std::setw(TEXT_WIDTH) << "  ISBN" << " : " << (*this).getISBN() << std::endl;
 		}
 
 		//display sequel if set
-		if (Book.getSequel() == DEF_SEQUEL);
+		if ((*this).getSequel() == DEF_SEQUEL);
 		else
 		{
-			out << std::left << std::setw(TEXT_WIDTH) << "  Sequel" << " : " << Book.getSequel() << std::endl;
+			out << std::left << std::setw(TEXT_WIDTH) << "  Sequel" << " : " << (*this).getSequel() << std::endl;
 		}
 
 		//open an arbitrary scope for displaying the elements in the item
 		{
 			//copy the list to allow full access and protect the real list from accedental/intentional modification
-			std::list<Elements>local_list = Book.getElement();
+			std::list<Elements>local_list = (*this).getElement();
 
 			//display elements if they exist; 
 			if (local_list.empty() == true); // check if the list is empty

@@ -30,11 +30,12 @@ public:
 	const std::string getdirector();
 	const double getrunTime();
 	std::string getSequel();
-	const int toCout();
+	//const int toCout();
 
 	//predicate
 	const int in_mem();
 	int clear();
+	std::ostream& output(std::ostream&);
 };
 
 #endif 

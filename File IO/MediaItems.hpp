@@ -56,12 +56,13 @@ public:
 	const double getPrice();
 	std::list<Elements> getElement();
 	std::string getSequel();
-	const virtual int toCout();
+	const int toCout();
 
 	//Predicate Functions
 	const virtual bool isEmpty();
 	const int in_mem();
 	virtual int clear();
+	virtual std::ostream& output(std::ostream& out);
 };
 
 #endif 

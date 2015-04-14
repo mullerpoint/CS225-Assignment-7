@@ -250,58 +250,54 @@ int MediaItems::clear()
 	return 0;
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Overloads
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-std::ostream& operator<<(std::ostream &out, MediaItems &MI)
+std::ostream& MediaItems::output(std::ostream& out)
 {
 	//check if the item is empty
-	if (MI.isEmpty() == true); //if empty print nothing
-	else if (MI.isEmpty() == false) //if not empty print data thats available
+	if ((*this).isEmpty() == true); //if empty print nothing
+	else if ((*this).isEmpty() == false) //if not empty print data thats available
 	{
 		// display item name_ if present
-		if (MI.getName() == DEF_NAME)
+		if ((*this).getName() == DEF_NAME)
 		{
 			out << std::left << std::setw(TEXT_WIDTH) << "Media Item Name" << " : " << "No Name Set" << std::endl;
 		}
-		else if (MI.getName() != DEF_NAME)
+		else if ((*this).getName() != DEF_NAME)
 		{
-			out << std::left << std::setw(TEXT_WIDTH) << "Media Item" << " : " << MI.getName() << std::endl;
+			out << std::left << std::setw(TEXT_WIDTH) << "Media Item" << " : " << (*this).getName() << std::endl;
 		}
 
 		// print out the author object
-		if (MI.getAuthor() == NULL);
+		if ((*this).getAuthor() == NULL);
 		else
 		{
-			out << std::left << std::setw(TEXT_WIDTH) << (*MI.getAuthor());
+			out << std::left << std::setw(TEXT_WIDTH) << (*(*this).getAuthor());
 		}
 
 		//display publication year if set; check if the value is default
-		if (MI.getPubYearDef() == true);
-		else if (MI.getPubYearDef() == false)
+		if ((*this).getPubYearDef() == true);
+		else if ((*this).getPubYearDef() == false)
 		{
-			out << std::left << std::setw(TEXT_WIDTH) << "  Pub Year" << " : " << MI.getPubYear() << std::endl;
+			out << std::left << std::setw(TEXT_WIDTH) << "  Pub Year" << " : " << (*this).getPubYear() << std::endl;
 		}
 
 		//display price if set
-		if (MI.getPrice() == DEF_PRICE);
-		else if (MI.getPrice() != DEF_PRICE)
+		if ((*this).getPrice() == DEF_PRICE);
+		else if ((*this).getPrice() != DEF_PRICE)
 		{
-			out << std::left << std::setw(TEXT_WIDTH) << "  Price" << " : $" << std::fixed << MI.getPrice() << std::endl;
+			out << std::left << std::setw(TEXT_WIDTH) << "  Price" << " : $" << std::fixed << (*this).getPrice() << std::endl;
 		}
 
 		//display sequel if set
-		if (MI.getSequel() == DEF_SEQUEL);
+		if ((*this).getSequel() == DEF_SEQUEL);
 		else
 		{
-			out << std::left << std::setw(TEXT_WIDTH) << "  Sequel" << " : " << MI.getSequel() << std::endl;
+			out << std::left << std::setw(TEXT_WIDTH) << "  Sequel" << " : " << (*this).getSequel() << std::endl;
 		}
 
 		//open an arbitrary scope for displaying the elements in the item
 		{
 			//copy the list to allow full access and protect the real list from accedental/intentional modification
-			std::list<Elements>local_list = MI.getElement();
+			std::list<Elements>local_list = (*this).getElement();
 
 			//display elements if they exist; 
 			if (local_list.empty() == true); // check if the list is empty
@@ -318,6 +314,17 @@ std::ostream& operator<<(std::ostream &out, MediaItems &MI)
 
 	}//close the if empty
 	return out;
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Overloads
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+std::ostream& operator<<(std::ostream &out, MediaItems &MI)
+{
+	return MI.output(out);
 }//close the overload
 
 
