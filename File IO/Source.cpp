@@ -882,16 +882,16 @@ void process_menu_in(char inchar)
 	case 'Z':
 	{
 		std::ifstream infile("test.txt");
-		std::cout << "step 1";
+		//std::cout << "step 1";
 		boost::archive::binary_iarchive in_archive(infile);
-		std::cout << "step 2";
+		//std::cout << "step 2";
 
 		items.push_back(new MediaItems);
 		ItemNum = items.size() - 1;
-		std::cout << "step 3";
+		//std::cout << "step 3";
 
 		in_archive & items[0];
-		std::cout << "step 4";
+		//std::cout << "step 4";
 	}
 	break;
 

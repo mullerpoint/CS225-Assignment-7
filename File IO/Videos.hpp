@@ -44,10 +44,8 @@ public:
 	{
 		//serialize base class information
 		ar & boost::serialization::base_object<MediaItems>(*this);
-		ar & isbn_;
-		ar & pages_;
-		ar & in_print_;
-		ar & in_print_def_;
+		ar & director_;
+		ar & runTime_;
 	}
 
 };
