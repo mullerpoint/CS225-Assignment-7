@@ -22,6 +22,9 @@
 #include <stdexcept> // include to derive from runtime_error
 #include <cctype> //for isalpha()
 #include <fstream> //for fopen and 
+#include <boost/archive/binary_iarchive.hpp>
+#include <boost/archive/binary_oarchive.hpp>
+#include <boost/serialization/base_object.hpp>
 #endif
 
 //User Defined Class Includes
@@ -83,6 +86,8 @@ bool isMusic();
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int main()
 {
+	//Create and open a character archive for output
+	std::ofstream ofs("filename.txt");
 
 	//use the imbue functionality to make the output look pretty
 	std::locale mylocal("");
@@ -93,6 +98,7 @@ int main()
 	std::string menu_in;
 	print_menu();
 
+	//string for item number in the UI
 	std::string itmstr;
 
 
@@ -127,7 +133,7 @@ int main()
 		catch (MyError &err)
 		{
 			std::cin.clear();
-			std::cin.ignore(10000, '\n'); 
+			std::cin.ignore(10000, '\n');
 			std::cout << "Error: " << err.getTypeStr(err.getType()) << std::endl;
 		}
 		catch (std::exception &err)
@@ -258,7 +264,7 @@ void process_menu_in(char inchar)
 				throw(badIO);
 			}
 			//validate input
-			if (limitCheck(new_itemNum, 0, (items.size()-1)))
+			if (limitCheck(new_itemNum, 0, (items.size() - 1)))
 			{
 				(ItemNum) = new_itemNum;
 			}
@@ -359,10 +365,10 @@ void process_menu_in(char inchar)
 		}
 		else //scripted
 		{
-			
-				std::cin >> (*Authors[AuthNum]);
+
+			std::cin >> (*Authors[AuthNum]);
 			//std::cin.ignore(256, '\n');
-			
+
 			AuthNum = AuthNum + 1;
 		}
 	}
@@ -452,7 +458,7 @@ void process_menu_in(char inchar)
 	//set music/video Producer/director respectivly
 	case 'F':
 	{
-		if (isMusic()|| isVideo())
+		if (isMusic() || isVideo())
 		{
 			std::string executive;
 			std::cout << "Please enter the Producer or director : ";
@@ -838,6 +844,21 @@ void process_menu_in(char inchar)
 	}
 	break;
 
+	case 'W':
+	{
+		//Create and open a character archive for output
+		std::ofstream outfile("test.txt");
+		//set archive
+		boost::archive::binary_oarchive out_archive(outfile);
+		//write class instance to archive
+		//for (MediaItems *element : items)
+		//{
+			out_archive & items[0];
+		//}
+		//archive and stream closed when destructors are called
+
+	}
+	break;
 	// set the item publication year
 	case 'Y':
 	{
@@ -857,11 +878,30 @@ void process_menu_in(char inchar)
 	}
 	break;
 
+	//read in object
+	case 'Z':
+	{
+		std::ifstream infile("test.txt");
+		std::cout << "step 1";
+		boost::archive::binary_iarchive in_archive(infile);
+		std::cout << "step 2";
+
+		items.push_back(new MediaItems);
+		ItemNum = items.size() - 1;
+		std::cout << "step 3";
+
+		in_archive & items[0];
+		std::cout << "step 4";
+	}
+	break;
+
 	// default option if wrong key entered
 	default:
 		std::cout << "Please select an option from the menu" << std::endl << "to see the menu again type 'm'";
 		break;
 	}
+
+
 }
 
 //Print Menu Function
@@ -1121,7 +1161,7 @@ bool doesAuthExist()
 
 bool limitCheck(int user_input, int low, int high)
 {
-	if (user_input>=low && user_input<=high)
+	if (user_input >= low && user_input <= high)
 		return 1;
 	else
 	{
@@ -1133,7 +1173,7 @@ bool limitCheck(int user_input, int low, int high)
 
 bool limitCheck(int user_input, int low)
 {
-	if (user_input>=low)
+	if (user_input >= low)
 		return 1;
 	else
 	{

@@ -37,6 +37,16 @@ public:
 	int in_mem();
 	void toCout();
 
+	//serialization implementation
+	friend class boost::serialization::access;
+	template<class archive>
+	void serialize(archive & ar, const unsigned int version)
+	{
+		ar & start_;
+		ar & end_;
+		ar & name_;
+		ar & hasData_;
+	}
 	
 };
 

@@ -50,6 +50,19 @@ public:
 	std::string dispGENRE(Music::GENRE = Music::GENRE::OTHER);
 	std::string dispGENRESht(Music::GENRE = Music::GENRE::OTHER);
 	std::ostream& output(std::ostream&);
+
+	//serialization implementation
+	friend class boost::serialization::access;
+	template<class archive>
+	void serialize(archive & ar, const unsigned int version)
+	{
+		//serialize base class information
+		ar & boost::serialization::base_object<MediaItems>(*this);
+		ar & Producer_;
+		ar & minutes_;
+		ar & musicGENRE_;
+	}
+
 };
 
 #endif 

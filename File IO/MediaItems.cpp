@@ -24,6 +24,10 @@
 #include <algorithm> //included to use sort()
 #include <stdexcept> // include to derive from runtime_error
 #include <cctype> //for isalpha()
+#include <fstream> //for fopen and 
+#include <boost/archive/text_iarchive.hpp>
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/serialization/base_object.hpp>
 #endif
 
 //includes for external dependencies
@@ -65,7 +69,7 @@ MediaItems::MediaItems()
 	setAuthor(NULL); //set the author to a null pointer
 	setSequel_str(DEF_SEQUEL); //set the sequel to blank
 
-	hasData = false; //set the item hasdata flag to false
+	hasData_ = false; //set the item hasdata flag to false
 
 	active_++;
 }
@@ -113,7 +117,7 @@ int MediaItems::setPrice(double new_price)
 {
 	if (new_price >= 0)
 	{
-		MediaItems::price = new_price;
+		MediaItems::price_ = new_price;
 		modified(true);
 		return 0;
 	}
@@ -169,7 +173,7 @@ int MediaItems::setSequel_str(std::string new_sequel)
 // set a modified flag
 int MediaItems::modified(bool data)
 {
-	MediaItems::hasData = data;
+	MediaItems::hasData_ = data;
 	return 0;
 }
 
@@ -204,7 +208,7 @@ Author* MediaItems::getAuthor()
 //get price of item
 const double MediaItems::getPrice()
 {
-	return MediaItems::price;
+	return MediaItems::price_;
 }
 
 //!!!--Inefficient for large lists--!!!///
@@ -234,7 +238,7 @@ const int MediaItems::toCout()
 //returns if the item is empty
 const bool MediaItems::isEmpty()
 {
-	return !(hasData);
+	return !(hasData_);
 }
 
 //return the number of constructed items
@@ -327,6 +331,23 @@ std::ostream& operator<<(std::ostream &out, MediaItems &MI)
 	return MI.output(out);
 }//close the overload
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//serialization implementation
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+template<class Archive>
+void serialize(Archive & ar, const unsigned int version)
+{
+	ar & hasData_;
+	ar & name_;
+	ar & pub_year_;
+	ar & pub_year_def_;
+	ar & auth_ptr_;
+	ar & price_;
+	ar & element_;
+	ar & element_count_;
+	ar & active_;
+	ar & sequel_;
+}
 
 #endif 

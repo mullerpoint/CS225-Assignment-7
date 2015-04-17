@@ -24,6 +24,10 @@
 #include <algorithm> //included to use sort()
 #include <stdexcept> // include to derive from runtime_error
 #include <cctype> //for isalpha()
+#include <fstream> //for fopen and 
+#include <boost/archive/text_iarchive.hpp>
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/serialization/base_object.hpp>
 #endif
 
 // include header file
@@ -229,5 +233,6 @@ std::ostream& Videos::output(std::ostream &out)
 	}//else if
 	return out;
 }//close overload
+
 
 #endif 

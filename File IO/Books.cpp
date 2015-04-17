@@ -24,6 +24,10 @@
 #include <algorithm> //included to use sort()
 #include <stdexcept> // include to derive from runtime_error
 #include <cctype> //for isalpha()
+#include <fstream> //for fopen and 
+#include <boost/archive/text_iarchive.hpp>
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/serialization/base_object.hpp>
 #endif
 
 // include header file
@@ -49,7 +53,7 @@ Books::Books() : MediaItems()
 	setPages(DEF_PAGES);
 
 	setInPrint(false);
-	in_print_def = true;
+	in_print_def_ = true;
 
 	//setSequel(NULL);
 
@@ -75,7 +79,7 @@ int Books::setPages(int new_pages)
 {
 	if (new_pages >= 0)
 	{
-		Books::pages = new_pages;
+		Books::pages_ = new_pages;
 		Books::modified(true);
 		return 0;
 	}
@@ -90,8 +94,8 @@ int Books::setPages(int new_pages)
 //set book in print status
 int Books::setInPrint(bool printStatus)
 {
-	in_print = printStatus;
-	in_print_def = false;
+	in_print_ = printStatus;
+	in_print_def_ = false;
 	Books::modified(true);
 	return 0;
 }
@@ -116,7 +120,7 @@ int Books::setInPrint(bool printStatus)
 //set book isbn
 int Books::setISBN(std::string new_isbn)
 {
-	Books::isbn = new_isbn;
+	Books::isbn_ = new_isbn;
 	MediaItems::modified(true);
 	return 0;
 }
@@ -128,19 +132,19 @@ int Books::setISBN(std::string new_isbn)
 //get page count
 const int Books::getPages()
 {
-	return pages;
+	return pages_;
 }
 
 //get in print status
 const bool Books::getInPrint()
 {
-	return in_print;
+	return in_print_;
 }
 
 //get if in print is default
 const bool Books::getInPrintDef()
 {
-	return in_print_def;
+	return in_print_def_;
 }
 
 //get the sequel pointer
@@ -152,7 +156,7 @@ std::string Books::getSequel()
 //get the isbn number
 const std::string Books::getISBN()
 {
-	return isbn;
+	return isbn_;
 }
 
 ////call overloaded print out function

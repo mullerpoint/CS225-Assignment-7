@@ -36,6 +36,20 @@ public:
 	const int in_mem();
 	int clear();
 	std::ostream& output(std::ostream&);
+
+	//serialization implementation
+	friend class boost::serialization::access;
+	template<class archive>
+	void serialize(archive & ar, const unsigned int version)
+	{
+		//serialize base class information
+		ar & boost::serialization::base_object<MediaItems>(*this);
+		ar & isbn_;
+		ar & pages_;
+		ar & in_print_;
+		ar & in_print_def_;
+	}
+
 };
 
 #endif 
