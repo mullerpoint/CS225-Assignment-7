@@ -25,9 +25,11 @@
 #include <stdexcept> // include to derive from runtime_error
 #include <cctype> //for isalpha()
 #include <fstream> //for fopen and 
-#include <boost/archive/text_iarchive.hpp>
-#include <boost/archive/text_oarchive.hpp>
+#include <boost/archive/binary_iarchive.hpp>
+#include <boost/archive/binary_oarchive.hpp>
 #include <boost/serialization/base_object.hpp>
+#include <boost/serialization/vector.hpp>
+#include <boost/serialization/list.hpp>
 #endif
 
 // include header file

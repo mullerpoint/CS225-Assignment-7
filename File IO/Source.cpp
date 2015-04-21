@@ -25,6 +25,8 @@
 #include <boost/archive/binary_iarchive.hpp>
 #include <boost/archive/binary_oarchive.hpp>
 #include <boost/serialization/base_object.hpp>
+#include <boost/serialization/vector.hpp>
+#include <boost/serialization/list.hpp>
 #endif
 
 //User Defined Class Includes
@@ -853,7 +855,8 @@ void process_menu_in(char inchar)
 		//write class instance to archive
 		//for (MediaItems *element : items)
 		//{
-			out_archive & items[0];
+			out_archive & items;
+			std::cout << "saved items";
 		//}
 		//archive and stream closed when destructors are called
 
@@ -882,16 +885,25 @@ void process_menu_in(char inchar)
 	case 'Z':
 	{
 		std::ifstream infile("test.txt");
-		//std::cout << "step 1";
+		std::cout << "step 1";
 		boost::archive::binary_iarchive in_archive(infile);
-		//std::cout << "step 2";
-
-		items.push_back(new MediaItems);
-		ItemNum = items.size() - 1;
+		std::cout << "step 2";
+		//int count = 0;
+		//while (!std::cin.eof())
+		//{
+			//items.push_back(new MediaItems);
+			//ItemNum = items.size() - 1;
+			//std::cout << "step 3";
+			//in_archive >> items[count];
+			//count++;
+			//std::cout << "step 4";
+		//}
+		//items.push_back(new MediaItems);
+		//ItemNum = items.size() - 1;
 		//std::cout << "step 3";
 
-		in_archive & items[0];
-		//std::cout << "step 4";
+		in_archive & items;
+		std::cout << "step 3";
 	}
 	break;
 

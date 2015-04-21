@@ -25,9 +25,11 @@
 #include <stdexcept> // include to derive from runtime_error
 #include <cctype> //for isalpha()
 #include <fstream> //for fopen and 
-#include <boost/archive/text_iarchive.hpp>
-#include <boost/archive/text_oarchive.hpp>
+#include <boost/archive/binary_iarchive.hpp>
+#include <boost/archive/binary_oarchive.hpp>
 #include <boost/serialization/base_object.hpp>
+#include <boost/serialization/vector.hpp>
+#include <boost/serialization/list.hpp>
 #endif
 
 //includes for external dependencies
@@ -45,6 +47,7 @@
 #define DEF_PRICE 0.00
 #define DEF_PUB 1970
 #define DEF_SEQUEL ""
+#define DEF_AUTH ""
 #define TEXT_WIDTH 20
 
 //Function prototype for insertion operator
@@ -66,7 +69,7 @@ MediaItems::MediaItems()
 	element_.clear(); // make the list of elements clear
 	element_count_ = 0; // set the element count to zero(0)
 
-	setAuthor(NULL); //set the author to a null pointer
+	auth_name_ = DEF_AUTH; //set the author to a null pointer
 	setSequel_str(DEF_SEQUEL); //set the sequel to blank
 
 	hasData_ = false; //set the item hasdata flag to false
@@ -148,7 +151,7 @@ int MediaItems::addElement(int start, int end, std::string name_, int elementNum
 //set author
 int MediaItems::setAuthor(Author* new_author)
 {
-	MediaItems::auth_ptr_ = new_author;
+	MediaItems::auth_name_ = (*new_author).getName();
 	MediaItems::modified(true);
 	return 0;
 }
@@ -200,9 +203,9 @@ const bool MediaItems::getPubYearDef()
 }
 
 //get author pointer
-Author* MediaItems::getAuthor()
+std::string MediaItems::getAuthor()
 {
-	return MediaItems::auth_ptr_;
+	return MediaItems::auth_name_;
 }
 
 //get price of item
@@ -271,10 +274,10 @@ std::ostream& MediaItems::output(std::ostream& out)
 		}
 
 		// print out the author object
-		if ((*this).getAuthor() == NULL);
+		if ((*this).getAuthor() == DEF_AUTH);
 		else
 		{
-			out << std::left << std::setw(TEXT_WIDTH) << (*(*this).getAuthor());
+			out << std::left << std::setw(TEXT_WIDTH) << ((*this).getAuthor());
 		}
 
 		//display publication year if set; check if the value is default

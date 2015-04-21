@@ -22,7 +22,7 @@ protected:
 	std::string name_; //name_ of the media item
 	int pub_year_; // publication year of the media item
 	bool pub_year_def_; // if the publicaiton year is default
-	Author* auth_ptr_; // pointer to the author of the mediaitem object
+	std::string auth_name_; // pointer to the author of the mediaitem object
 
 	double price_; // price of the media item
 
@@ -52,7 +52,7 @@ public:
 	const std::string getName();
 	const int getPubYear();
 	const bool getPubYearDef();
-	Author* getAuthor();
+	std::string getAuthor();
 	const double getPrice();
 	std::list<Elements> getElement();
 	std::string getSequel();
@@ -73,9 +73,9 @@ public:
 		ar & name_;
 		ar & pub_year_;
 		ar & pub_year_def_;
-		ar & auth_ptr_;
+		ar & auth_name_;
 		ar & price_;
-		//ar & element_;
+		ar & element_;
 		ar & element_count_;
 		ar & active_;
 		ar & sequel_;

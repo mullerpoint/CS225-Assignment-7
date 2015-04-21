@@ -25,9 +25,11 @@
 #include <stdexcept> // include to derive from runtime_error
 #include <cctype> //for isalpha()
 #include <fstream> //for fopen and 
-#include <boost/archive/text_iarchive.hpp>
-#include <boost/archive/text_oarchive.hpp>
+#include <boost/archive/binary_iarchive.hpp>
+#include <boost/archive/binary_oarchive.hpp>
 #include <boost/serialization/base_object.hpp>
+#include <boost/serialization/vector.hpp>
+#include <boost/serialization/list.hpp>
 #endif
 
 // include header file
@@ -41,7 +43,11 @@
 #define DEF_Producer_ ""
 #define DEF_MIN 0.0
 #define DEF_GENRE Music::GENRE::UDEF
+#define DEF_AUTH ""
 #define TEXT_WIDTH 20
+
+#include <boost/serialization/export.hpp>
+BOOST_CLASS_EXPORT(Music);
 
 //Function prototype for insertion operator
 std::ostream& operator<<(std::ostream &out, Music &music);
@@ -243,10 +249,10 @@ std::ostream& Music::output(std::ostream &out)
 		}
 
 		// print out the author object
-		if ((*this).getAuthor() == NULL);
+		if ((*this).getAuthor() == DEF_AUTH);
 		else
 		{
-			out << std::left << std::setw(TEXT_WIDTH) << (*((*this).getAuthor()));
+			out << std::left << std::setw(TEXT_WIDTH) << (((*this).getAuthor()));
 		}
 
 		//display publication year if set; check if the value is default
