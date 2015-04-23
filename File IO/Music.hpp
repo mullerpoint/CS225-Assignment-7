@@ -31,25 +31,25 @@ public:
 	~Music();
 
 	//Mutators
-	virtual int setExecutive(std::string);
-	int setrunTime(double);
-	int setGENRE(GENRE UDEF);
+	virtual int setExecutive(std::string); //set producer
+	int setrunTime(double);// set run time
+	int setGENRE(GENRE UDEF); //set genre
 	//int setSequel(MediaItems*);
 	//int setSequel(std::string);
 
 	//Accessors
-	const std::string getProducer();
-	const virtual double getrunTime();
-	const Music::GENRE getGENRE();
-	std::string getSequel();
+	const std::string getProducer();// get producer
+	const virtual double getrunTime();//get run time
+	const Music::GENRE getGENRE();// get the genre
+	std::string getSequel(); // get sequel string
 	//const virtual int toCout();
 
 	//predicate
-	const int in_mem();
-	int clear();
-	std::string dispGENRE(Music::GENRE = Music::GENRE::OTHER);
-	std::string dispGENRESht(Music::GENRE = Music::GENRE::OTHER);
-	std::ostream& output(std::ostream&);
+	const int in_mem();// get number of items in memory
+	int clear();// clear object
+	std::string dispGENRE(Music::GENRE = Music::GENRE::OTHER); // return genre as a string
+	std::string dispGENRESht(Music::GENRE = Music::GENRE::OTHER); // return genre as a short string
+	std::ostream& output(std::ostream&); //custom output function for overloaded output operator
 
 	//serialization implementation
 	friend class boost::serialization::access;

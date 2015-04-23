@@ -89,6 +89,24 @@ bool isMusic();
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int main(int argc, char* argv[])
 {
+	// if command line argument pass a file name to read program will open and import data
+	if (argc > 1)
+	{
+		//open file and make binary instream archive object
+		std::string fileName(argv[1]);
+		std::ifstream infile(fileName, std::ios::in | std::ios::binary);
+		if (infile.good())
+		{
+			std::cout << "Opened File Successfully";
+		}
+		boost::archive::binary_iarchive in_archive(infile);
+
+		//read in itmes
+		in_archive >> items;
+		//read in authors
+		in_archive & Authors;
+	}
+	
 	//use the imbue functionality to make the output look pretty
 	std::locale mylocal("");
 	locale = &mylocal;
@@ -125,7 +143,7 @@ int main(int argc, char* argv[])
 				std::cin >> menu_in;
 				if (std::cin.eof())
 				{
-					std::cout << "Error : End of File reached" << std::endl;
+					std::cout << "ERROR : End of File reached" << std::endl;
 				}
 			}
 			process_menu_in(menu_in[0]);
@@ -134,22 +152,22 @@ int main(int argc, char* argv[])
 		{
 			std::cin.clear();
 			std::cin.ignore(10000, '\n');
-			std::cout << "Error: " << err.getTypeStr(err.getType()) << std::endl;
+			std::cout << "ERROR: " << err.getTypeStr(err.getType()) << std::endl;
 		}
 		catch (std::exception &err)
 		{
 			std::cin.clear();
 			//std::cin.ignore(10000, '\n');
-			std::cout << "Error: " << err.what() << std::endl;
+			std::cout << "ERROR: " << err.what() << std::endl;
 
 			if (typeid(err) == typeid(std::bad_alloc))
 			{
-				std::cout << "Error: No Memory available, delete unneeded items" << std::endl;
+				std::cout << "ERROR: No Memory available, delete unneeded items" << std::endl;
 			}
 		}
 		catch (...)
 		{
-			std::cout << "Error: If you see this you have broken the code" << std::endl << "Quiting ..." << std::endl;
+			std::cout << "ERROR: If you see this you have broken the code" << std::endl << "Quiting ..." << std::endl;
 			std::terminate();
 		}
 	}
@@ -171,7 +189,8 @@ void process_menu_in(char inchar)
 
 	switch (toupper(inchar))
 	{
-
+	
+	//clear comment line
 	case '/':
 	{
 		std::string junk_line;
@@ -850,13 +869,12 @@ void process_menu_in(char inchar)
 		std::ofstream outfile(FILE_NAME, std::ios::out | std::ios::binary);
 		//set archive
 		boost::archive::binary_oarchive out_archive(outfile);
-		//write class instance to archive
-		//for (MediaItems *element : items)
-		//{
+
+		//save items to archive
 			out_archive & items;
 			std::cout << "saved items";
-		//}
-		//archive and stream closed when destructors are called
+
+			//save authors to archive
 			out_archive & Authors;
 			std::cout << "saved Authors";
 
@@ -884,39 +902,19 @@ void process_menu_in(char inchar)
 	//read in object
 	case 'Z':
 	{
+		//open file and make binary instream archive object
 		std::ifstream infile(FILE_NAME, std::ios::in | std::ios::binary); 
 		if (infile.good())
 		{
-			std::cout << "opened in-archive";
+			std::cout << "Opened File Successfully";
 		}
-		std::cout << "step 1";
 		boost::archive::binary_iarchive in_archive(infile);
-		std::cout << "step 2";
-		//int count = 0;
-		//while (!std::cin.eof())
-		//{
-			//items.push_back(new MediaItems);
-			//ItemNum = items.size() - 1;
-			//std::cout << "step 3";
-			//in_archive >> items[count];
-			//count++;
-			//std::cout << "step 4";
-		//}
-		//items.push_back(new MediaItems);
-		//ItemNum = items.size() - 1;
-		//std::cout << "step 3";
 
-		std::vector<MediaItems>items_read_in;
-
-
-		//items.reserve(100);
+		//read in items
 		in_archive >> items;
-		std::cout << "step 3";
-
-		//items = items_read_in;
-
+		
+		//read in authors
 		in_archive & Authors;
-		std::cout << "step 4";
 	}
 	break;
 
@@ -933,10 +931,10 @@ void process_menu_in(char inchar)
 void print_menu()
 {
 	std::cout << std::endl
-		<< "+ - Create & Select new Media Item of[B, M, V, *] types" << std::endl
-		<< "- - Delete selected Media Item" << std::endl
-		<< "* - Display / Print all Media Items" << std::endl
-		<< "# - Set the selected Media Item" << std::endl
+		<< "+ Create & Select new Media Item of [B, M, V, *] types" << std::endl
+		<< "- Delete selected Media Item" << std::endl
+		<< "* Display / Print all Media Items" << std::endl
+		<< "# Set the selected Media Item" << std::endl
 		<< "0 - Clear selected Media Item data" << std::endl
 		<< "B - set Media Item duration / time" << std::endl
 		<< "C - Create author" << std::endl
@@ -954,8 +952,11 @@ void print_menu()
 		<< "R - Display program memory usage" << std::endl
 		<< "S - Set Media Item Sequel from Index" << std::endl
 		<< "T - Set Media Item Author Index" << std::endl
-		<< "U - Sort Media Item Aggregation by Name" << std::endl
+		<< "U - Sort Media Item Aggregation[V, T, *] keys" << std::endl
 		<< "V - Set Media Item Value" << std::endl
+		<< "W - Write Media Item database to file" << std::endl
+		<< "Y - Set Media Item Year Produced" << std::endl
+		<< "Z - Read Media Item database from file" << std::endl
 		<< "Y - Set Media Item Year Produced" << std::endl << std::endl;
 }
 
@@ -1157,7 +1158,7 @@ bool typeSort(MediaItems* lhs, MediaItems* rhs)
 	}
 }
 
-
+//check if there are media items in memory
 bool doesMIExist()
 {
 	if (items.size() > 0)
@@ -1172,6 +1173,7 @@ bool doesMIExist()
 	}
 }
 
+//checks if there are authors in memory 
 bool doesAuthExist()
 {
 	if (Authors.size() > 0)
@@ -1184,6 +1186,7 @@ bool doesAuthExist()
 	}
 }
 
+//checks that a input is between two bounds
 bool limitCheck(int user_input, int low, int high)
 {
 	if (user_input >= low && user_input <= high)
@@ -1196,6 +1199,7 @@ bool limitCheck(int user_input, int low, int high)
 	}
 }
 
+//checks if user input is above a minimum bound
 bool limitCheck(int user_input, int low)
 {
 	if (user_input >= low)
@@ -1208,6 +1212,7 @@ bool limitCheck(int user_input, int low)
 	}
 }
 
+//checks if item is book
 bool isBook()
 {
 	if (typeid(*(items[ItemNum])) == typeid(Books))
@@ -1218,6 +1223,7 @@ bool isBook()
 	}
 }
 
+//checks if item video
 bool isVideo()
 {
 	if (typeid(*(items[ItemNum])) == typeid(Videos))
@@ -1228,6 +1234,7 @@ bool isVideo()
 	}
 }
 
+//checks if item is music
 bool isMusic()
 {
 	if (typeid(*(items[ItemNum])) == typeid(Music))

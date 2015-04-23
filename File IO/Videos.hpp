@@ -21,21 +21,21 @@ public:
 	virtual ~Videos();
 
 	//Mutators
-	virtual int setExecutive(std::string);
-	int setrunTime(double);
+	virtual int setExecutive(std::string); //set director
+	int setrunTime(double); //set run time
 	//int setSequel(Videos*);
 	//int setSequel_str(std::string);
 
 	//accessors
-	const std::string getdirector();
-	const double getrunTime();
-	std::string getSequel();
+	const std::string getdirector(); //return director
+	const double getrunTime(); //return run time
+	std::string getSequel();// return sequel string
 	//const int toCout();
 
 	//predicate
-	const int in_mem();
-	int clear();
-	std::ostream& output(std::ostream&);
+	const int in_mem(); // return number of objects in memory
+	int clear(); // clear object
+	std::ostream& output(std::ostream&);//custom output function for overloaded output operator
 
 	//serialization implementation
 	friend class boost::serialization::access;

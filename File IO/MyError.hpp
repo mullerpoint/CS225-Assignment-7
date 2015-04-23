@@ -33,8 +33,8 @@ private:
 	ERRTYPE Error_;
 public:
 	MyError(ERRTYPE);
-	ERRTYPE getType();
-	std::string getTypeStr(ERRTYPE);
+	ERRTYPE getType(); // get the error type
+	std::string getTypeStr(ERRTYPE); // return the error type as a sting
 };
 
 #endif

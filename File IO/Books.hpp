@@ -23,24 +23,24 @@ public:
 	virtual ~Books();
 
 	//Mutators
-	int setPages(int);
-	int setInPrint(bool);
+	int setPages(int); //set page count
+	int setInPrint(bool);//set in print flag
 	//int setSequel(Books*);
 	//int setSequel_str(std::string);
-	int setISBN(std::string);
+	int setISBN(std::string); // set isbn stringg
 
 	//Accessors
-	const int getPages();
-	const bool getInPrint();
-	const bool getInPrintDef();
-	std::string getSequel();
-	const std::string getISBN();
+	const int getPages(); //return pages
+	const bool getInPrint();// get in print flag
+	const bool getInPrintDef();// get if in print is default
+	std::string getSequel();// get sequel string
+	const std::string getISBN();// get isbn string
 	//const int toCout();
 
 	//predicate
-	const int in_mem();
-	int clear();
-	std::ostream& output(std::ostream &out);
+	const int in_mem(); // get number of objects in memory
+	int clear();// clear object
+	std::ostream& output(std::ostream &out);//custom output function for overloaded output operator
 
 	//serialization implementation
 	friend class boost::serialization::access;

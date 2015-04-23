@@ -31,38 +31,38 @@ protected:
 
 	static int active_; // number of media items active
 
-	std::string sequel_;
+	std::string sequel_; //sequel string
 
 public:
 	//Constructor Destructor
-	MediaItems();
-	virtual ~MediaItems();
+	MediaItems(); // constructor
+	virtual ~MediaItems(); // destructor
 
 	//Mutators
-	int setName(std::string);
-	int setPubYear(int);
-	int setPrice(double);
-	int addElement(int, int, std::string, int);
-	int setAuthor(Author*);
-	virtual int setSequel(MediaItems*);
-	virtual int setSequel_str(std::string);
-	virtual int modified(bool);
+	int setName(std::string); //set the name
+	int setPubYear(int);// set publication year
+	int setPrice(double);// set price
+	int addElement(int, int, std::string, int); // add an element to the list
+	int setAuthor(Author*);//set author name
+	virtual int setSequel(MediaItems*);// set sequel name from pointer
+	virtual int setSequel_str(std::string);// set sequel name from string
+	virtual int modified(bool); // set modified flag
 	
 	//Accessors
-	const std::string getName();
-	const int getPubYear();
-	const bool getPubYearDef();
-	std::string getAuthor();
-	const double getPrice();
-	std::list<Elements> getElement();
-	std::string getSequel();
-	const int toCout();
+	const std::string getName(); // get name
+	const int getPubYear(); // get pulication year
+	const bool getPubYearDef(); // get if the publication year is default
+	std::string getAuthor(); // get author name
+	const double getPrice(); // get price
+	std::list<Elements> getElement();// get the element list
+	std::string getSequel(); //get sequel name
+	const int toCout(); // print object out
 
 	//Predicate Functions
-	const virtual bool isEmpty();
-	const int in_mem();
-	virtual int clear();
-	virtual std::ostream& output(std::ostream& out);
+	const virtual bool isEmpty();// returns if the object is empty
+	const int in_mem();//returns number of objects in memory
+	virtual int clear();// clears object
+	virtual std::ostream& output(std::ostream& out); //custom output function for overloaded output operator
 
 	//serialize implementation
 	friend class boost::serialization::access;

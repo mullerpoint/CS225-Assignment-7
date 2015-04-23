@@ -22,20 +22,20 @@ public:
 	~Elements();
 
 	//Mutators
-	void setStart(int);
-	void setEnd(int);
-	void setName(std::string);
-	void modified(bool);
+	void setStart(int); // set start 
+	void setEnd(int); // set end
+	void setName(std::string); // set element name
+	void modified(bool); // set modified flag
 
 	//Accessors
-	int getStart();
-	int getEnd();
-	std::string getName();
+	int getStart(); //get start
+	int getEnd(); //get end
+	std::string getName(); //get name
 
 	//Predicate Functions
-	bool isEmpty();
-	int in_mem();
-	void toCout();
+	bool isEmpty(); // get if the element is empty
+	int in_mem(); //get number of objects in memory
+	void toCout(); // print object out
 
 	//serialization implementation
 	friend class boost::serialization::access;

@@ -338,19 +338,19 @@ std::ostream& operator<<(std::ostream &out, MediaItems &MI)
 //serialization implementation
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-template<class Archive>
-void serialize(Archive & ar, const unsigned int version)
-{
-	ar & hasData_;
-	ar & name_;
-	ar & pub_year_;
-	ar & pub_year_def_;
-	ar & auth_ptr_;
-	ar & price_;
-	ar & element_;
-	ar & element_count_;
-	ar & active_;
-	ar & sequel_;
-}
+//template<class Archive>
+//void serialize(Archive & ar, const unsigned int version)
+//{
+//	ar & hasData_;
+//	ar & name_;
+//	ar & pub_year_;
+//	ar & pub_year_def_;
+//	ar & auth_ptr_;
+//	ar & price_;
+//	ar & element_;
+//	ar & element_count_;
+//	ar & active_;
+//	ar & sequel_;
+//}
 
 #endif 

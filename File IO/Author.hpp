@@ -22,18 +22,18 @@ public:
 	~Author();
 
 	//Mutators
-	void setBirth(int);
-	void setDeath(int);
-	void setName(std::string);
-	void modified(bool);
+	void setBirth(int); // set birth year
+	void setDeath(int); // set death year
+	void setName(std::string);// set name of author
+	void modified(bool); // set modified flag
 
 	//Accessors 
-	const std::string getName();
+	const std::string getName(); // return name
 
 	//Predicate Functions
-	bool isEmpty();
-	int in_mem();
-	void toCout();
+	bool isEmpty(); // return if the object is empty
+	int in_mem();// return number of object in memory
+	void toCout(); // print object out
 
 	//serialization implementation
 	friend class boost::serialization::access;
