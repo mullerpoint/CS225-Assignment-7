@@ -41,6 +41,7 @@
 
 //Gloabal Variables and Defines
 #define TEXT_WIDTH 20
+#define FILE_NAME "test.dat"
 bool done = false;
 
 //determine if interactive or scripted
@@ -86,11 +87,8 @@ bool isMusic();
 //Main Declaration
 //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-int main()
+int main(int argc, char* argv[])
 {
-	//Create and open a character archive for output
-	std::ofstream ofs("filename.txt");
-
 	//use the imbue functionality to make the output look pretty
 	std::locale mylocal("");
 	locale = &mylocal;
@@ -849,7 +847,7 @@ void process_menu_in(char inchar)
 	case 'W':
 	{
 		//Create and open a character archive for output
-		std::ofstream outfile("test.txt");
+		std::ofstream outfile(FILE_NAME, std::ios::out | std::ios::binary);
 		//set archive
 		boost::archive::binary_oarchive out_archive(outfile);
 		//write class instance to archive
@@ -859,6 +857,8 @@ void process_menu_in(char inchar)
 			std::cout << "saved items";
 		//}
 		//archive and stream closed when destructors are called
+			out_archive & Authors;
+			std::cout << "saved Authors";
 
 	}
 	break;
@@ -884,7 +884,11 @@ void process_menu_in(char inchar)
 	//read in object
 	case 'Z':
 	{
-		std::ifstream infile("test.txt");
+		std::ifstream infile(FILE_NAME, std::ios::in | std::ios::binary); 
+		if (infile.good())
+		{
+			std::cout << "opened in-archive";
+		}
 		std::cout << "step 1";
 		boost::archive::binary_iarchive in_archive(infile);
 		std::cout << "step 2";
@@ -902,8 +906,17 @@ void process_menu_in(char inchar)
 		//ItemNum = items.size() - 1;
 		//std::cout << "step 3";
 
-		in_archive & items;
+		std::vector<MediaItems>items_read_in;
+
+
+		//items.reserve(100);
+		in_archive >> items;
 		std::cout << "step 3";
+
+		//items = items_read_in;
+
+		in_archive & Authors;
+		std::cout << "step 4";
 	}
 	break;
 

@@ -1,0 +1,395 @@
+r
+*
+c 1950 0 Bjarne Stroustrup
+c 1931 0 Frederick P. Brooks Jr.
+c 0 0 TR Reid
+c 1938 0 Donald E. Knuth
+//
+n Name of Null Object
+// PPP
++ b
+n Programming: Principles and Practice Using C++
+p 1305
+v 47.39
+i 1
+y 2014
+e 43 58 Hello World!
+e 255 302 Functions
+e 303 342 Classes
+e 583 626 Vectors and Free Store
+e 627 666 Vectors and Arrays
+t 0 
+s 412
+// MMM
++ b
+n The Mythical Man-Month
+p 336
+v 28.80
+i 1
+y 1975
+t 1
+e 3 12 The Tar Pit
+e 13 28 The Mythical Man Month
+e 97 106 Ten Pounds in a Five-Pound Sack
+e 115 126 Plan to Throw One Away
+e 153 162 Hatching a Catastrophe
+j 978-0201006506
+// The Chip
++ b
+n The Chip
+y 2001
+i 1
+v 13.61
+t 2
+p 320
+j 978-0375758287
+// TAOCP V1a
++ b
+n Fundamental Algorithms
+t 3
+v 58.14
+y 1997
+p 672
+// s 5
+j 978-0201896831
+// TAOCP V1b
++ b
+n The MMIX Supplement
+j 978-0133992311
+v 24.44
+y 2015
+p 224
+// TAOCP V2
++ b
+n Seminumerical Algorithms
+t 3
+y 1997
+j 978-0201896848
+v 65.91
+p 784
+// s 6
+// TAOCP V3
++ b
+n Sorting and Searching
+t 3
+y 1998
+v 58.05
+j 978-0201896855
+p 800
+// s 7
+// TAOCP V4A
++ b
+n Combinatorial Algorithms
+t 3
+y 2011
+p 883
+j 978-0201038040
+v 63.99
+// s 8
+// TAOCP V4B
++ b
+n Mathematical Preliminaries Redux
+t 3
+p hypertext doc
+// Babbage : On the Economy...
++ b
+n On the Economy of Machinery and Manufactures
+y 1832
+p 346
+c 1792 1871 Charles Babbage
+j 1108009107
+t 4
+i 0
+// Creation of the Computer Video
++ v
+n The Creation of the Computer
+y 2005
+b 50
+v 35.00 
+// Music
++ m
+n Computer Games
+y 2014
+f George Clinton
+v 13.98
+b 40.39
+k Synth
+// Media Item
++ i
+n Computer Ethics : Integrating Across the Curriculum
+v 28.27
+y 2009
+// Sequels
+#
+# 3
+s 5
+# 5
+s 6
+# 6
+s 7
+# 7
+s 8
+*
+r
+# 6
+-
+# 91
+-
+u
+# 6
+-
+# 9
+-
+*
+r
+//
+// Next TestScript
+// Authors
+c 1944 0 George Walton Lucas, Jr.
+// Movies
++ v
+n Star Wars: A New Hope
+y 1977
+t 5
+f George Lucas
+e 1 4 Imperial Boarding Party
+e 36 39 The Death Star
+e 86 89 Back to the Ship
+p 321
+v 9.99
+// s 41
++ v
+n The Empire Strikes Back
+y 1980
+f Irvin Kershner
+c 0 0 Leigh Brackett
+t 6
+s  12
+v 7.99
+// Return of Jedi
++ v
+n Return of the Jedi
+y 1983
+f Richard Marquand
+t 5
+v 12.98
+// Phantom Menace
++ v
+n Name 2 b replaced
+y 1999
+f George Lucas
+t 5
+n The Phantom Menace
+v 6.51
+// Attack of the Clones
++ v
+n Attack of the Clones
+y 2002
+f George Lucas
+v 2.98
+// s 45
++ v
+n Revenge of the Sith
+y 2005
+f George Lucas
+t 5
+k Classic
+v 14.98
+// s 40
++ m
+n The Music of John Williams: The Definitive Collection
+y 2012
+f Prague Philharmonic Orchestra
+v 50.98
+k Classical
++ b
+n Heir to the Jedi: Star Wars
+v 20.52
+y 2015
+p 304
+c 0 0 Kevin Hearne
+t 7
+j 978-0345544858
+// Set Sequels
+# 10
+s 11
+# 11
+s 12
+# 13
+s 14
+# 14
+s 15
+# 15
+s 10
+// Output
+*
+// Sort by Value
+u value
+// Output
+*
+r
+// Add Items
++ i
+n Star Wars: Darth Maul: Son of Dathomir
+v 14.81
+y 2014
+k Comic Book
+//
++ i
+n Star Wars Volume 1: In the Shadow of Yavin
+v 14.08
+y 2013
+p 21
+//
++ b
+n Star Wars: Jedi Academy, Return of the Padawan
+c 0 0 Jeffrey Brown
+t 8
+v 7.99
+y 2014
+p 48
+//
++ b
+n Star Wars: Blood Ties - A Tale of Jango and Boba Fett
+c Tom Taylor
+t 9
+v 6.51
+y 2011
+p 64
+// Sort by Type
+u type
+// Output
+r
+*
+// Next Test Script
+//
++ m
+n Stardust
+c 1933 0 Willie Nelson
+t 9
+v 9.99
+k country
+//
++ m
+n Back in Black
+c 0 0 AC/DC
+t 10
+v 7.99
+k Rock
+y 1994
+//
++ m
+n Big Daddy Multitude
+c 0 0 Mustard Plug
+y 1993
+t 11
+k Ska
+v 8.99  
+//
++ m
+n Natty Dread
+c 1945 1981 Bob Marley
+y 2001
+t 12
+k Reggae
+v 12.98
+e 0 0 Rebel Music
+e 0 0 No Woman No Cry
+e 0 0 Revolution
+//
++ m
+n Aphex Twins
+k Techno
+v 4.44
+//
++ m
+n Nobodys Smiling
+c 1972 0 Lonnie Lynn
+t 13
+k HipHop
+v 9.87
+y 2014
+//
++ m
+n Rockabilly Riot!
+c 1959 0 Brian Setzer
+t 14
+v 11.99
+y 2014
+k Rockabilly
+// Polka
++ m
+n 16 Most Requested Polkas
+y 2008
+v 4.99
+k Polka
+// 
++ m
+n Shadows in the Night
+c 1941 0 Bob Dylan
+t 15
+y 2015
+//
++ m
+n The Harder They Come
+y 1972
+f Perry Henzell
+v 7.58
+//
++ m
+n Still the Same Ole Me
+k Country/Western
+y 1969
+v 0.99
+c 1931 2013 George Jones
+t 16
+//
++ i
+n Final Fantasy XIV: A Realm Reborn
+y 2013
+v 19.99
+c 2003 0 Square Enix
+t 17
+//
++ i
+n Lightning Returns: Final Fantasy XIII
+y 2014
+v 19.51
+t 17
+//
++ i
+n Final Fantasy IV
+y 2008
+v 37.45
+t 17
+//
++ i
+n Final Fantasy XV
+y 2015
+v 59.96
+t 17
+//
++ i
+n Final Fantasy XII : Revenant Wings
+v 74.99
+t 17
+y 2006
+// Sequels
+# 37
+s 34
+# 34
+s 33
+# 33
+s 36
+// Sort
+u alphabetical
+// Write to file
+w
+// Output
+r
+*
+l
+// Quit
+q
+q
+q
